@@ -1,0 +1,141 @@
+{
+    "_readme": [
+        "This file locks the dependencies of your project to a known state",
+        "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
+        "This file is @generated automatically"
+    ],
+    "content-hash": "a84f8658802d374eb3b9cd2baab00020",
+    "packages": [
+        {
+            "name": "godruoyi/php-snowflake",
+            "version": "3.0.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/godruoyi/php-snowflake.git",
+                "reference": "bf77419d3ac657ee4e4375d5436ba0c8a7ac8c65"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/godruoyi/php-snowflake/zipball/bf77419d3ac657ee4e4375d5436ba0c8a7ac8c65",
+                "reference": "bf77419d3ac657ee4e4375d5436ba0c8a7ac8c65",
+                "shasum": ""
+            },
+            "require": {
+                "php-64bit": ">=8.1"
+            },
+            "require-dev": {
+                "laravel/pint": "^1.10",
+                "phpstan/phpstan": "^1.10",
+                "phpunit/phpunit": "^10"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "Godruoyi\\Snowflake\\": "src"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Godruoyi",
+                    "email": "g@godruoyi.com"
+                }
+            ],
+            "description": "An ID Generator for PHP based on Snowflake Algorithm (Twitter announced).",
+            "homepage": "https://github.com/godruoyi/php-snowflake",
+            "keywords": [
+                "Unique ID",
+                "laravel snowflake",
+                "order id",
+                "php snowflake",
+                "php sonyflake",
+                "php unique id",
+                "snowflake algorithm",
+                "sonyflake",
+                "unique order id"
+            ],
+            "support": {
+                "issues": "https://github.com/godruoyi/php-snowflake/issues",
+                "source": "https://github.com/godruoyi/php-snowflake/tree/3.0.0"
+            },
+            "funding": [
+                {
+                    "url": "https://images.godruoyi.com/wechat.png",
+                    "type": "custom"
+                }
+            ],
+            "time": "2023-08-28T12:37:25+00:00"
+        },
+        {
+            "name": "stripe/stripe-php",
+            "version": "v13.2.1",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/stripe/stripe-php.git",
+                "reference": "3f39dcd583b5e9ff2b65281034d38c79358a8095"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/stripe/stripe-php/zipball/3f39dcd583b5e9ff2b65281034d38c79358a8095",
+                "reference": "3f39dcd583b5e9ff2b65281034d38c79358a8095",
+                "shasum": ""
+            },
+            "require": {
+                "ext-curl": "*",
+                "ext-json": "*",
+                "ext-mbstring": "*",
+                "php": ">=5.6.0"
+            },
+            "require-dev": {
+                "friendsofphp/php-cs-fixer": "3.5.0",
+                "phpstan/phpstan": "^1.2",
+                "phpunit/phpunit": "^5.7 || ^9.0"
+            },
+            "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "2.0-dev"
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Stripe\\": "lib/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Stripe and contributors",
+                    "homepage": "https://github.com/stripe/stripe-php/contributors"
+                }
+            ],
+            "description": "Stripe PHP Library",
+            "homepage": "https://stripe.com/",
+            "keywords": [
+                "api",
+                "payment processing",
+                "stripe"
+            ],
+            "support": {
+                "issues": "https://github.com/stripe/stripe-php/issues",
+                "source": "https://github.com/stripe/stripe-php/tree/v13.2.1"
+            },
+            "time": "2023-11-06T23:24:49+00:00"
+        }
+    ],
+    "packages-dev": [],
+    "aliases": [],
+    "minimum-stability": "stable",
+    "stability-flags": [],
+    "prefer-stable": false,
+    "prefer-lowest": false,
+    "platform": [],
+    "platform-dev": [],
+    "plugin-api-version": "2.2.0"
+}
