@@ -88,8 +88,8 @@ class Solvers {
     }  elseif(strlen($data['experience']) < 50) {
       return createUserMessage("error", "Please provide a detailed description (at least 50 characters) of your experience.");
     } else {
-      $sql = "INSERT INTO tbl_solvers(public_id, fk_org_id, fk_user_id, experience,headline, availability, rate,rate_type, location_preference,certificates,city,state,zip) 
-        VALUES(:publicid, :orgid, :userid,  :experience,:headline, :availability, :rate,:rate_type, :location_preference,:certificates,:city,:state,:zip)";
+      $sql = "INSERT INTO tbl_solvers(public_id, fk_org_id, fk_user_id, experience,headline, availability, rate,rate_type, location_preference,certificates,city,state,zip,industry,technology,speciality) 
+        VALUES(:publicid, :orgid, :userid,  :experience,:headline, :availability, :rate,:rate_type, :location_preference,:certificates,:city,:state,:zip,:industry,:technology,:speciality)";
       $stmt = $this->db->pdo->prepare($sql);
       $stmt->bindValue(':publicid', $newPublicId);
       $stmt->bindValue(':userid', $users->getRealId(Session::get("userid")));
@@ -105,6 +105,9 @@ class Solvers {
       $stmt->bindValue(':city',$data['city']);
       $stmt->bindValue(':state',$data['state']);
       $stmt->bindValue(':zip',$data['zip']);
+      $stmt->bindValue(':speciality',$data['specialty_hidden']);
+      $stmt->bindValue(':industry',$data['industry_hidden']);
+      $stmt->bindValue(':technology',$data['technology_hidden']);
       $result = $stmt->execute();
       // Retrieve the solver id
            

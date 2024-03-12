@@ -1,7 +1,20 @@
 
 <?php
-include '../inc/header.php';
-Session::checkSession();
+$docRoot ="../";
+include_once $docRoot."config/config.php";
+include_once $docRoot."inc/common.php";
+include_once $docRoot."lib/Session.php";
+require_once $docRoot."vendor/autoload.php";
+$snowflake = new \Godruoyi\Snowflake\Snowflake;
+include_once $docRoot."classes/Opportunities.php";
+include_once $docRoot."classes/Users.php";
+include_once $docRoot."classes/Solvers.php";
+include_once $docRoot."classes/Matches.php";
+Session::init();
+$opportunities = new Opportunities();
+$users = new Users() ;
+$solvers = new Solvers();
+$matches = new Matches();
 $all_opportunity = $opportunities->getAllOpportunityDataForUser(Session::get('userid'), $users);
 $real_solver_id = $solvers->getRealId($_GET['public_solver_id']);
 

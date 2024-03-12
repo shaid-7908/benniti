@@ -89,7 +89,7 @@ $totalMatches = sizeof($userMatches);
             <p style="font-size: 16px; font-weight: 400; line-height: 24px;">Complete the following tasks to make the most of The Manufacturing Exchange.</p>
             <?php if ($userOrgs) { ?>
 
-              <div class="d-flex p-2 my-2  align-items-center" style="border:2px solid #024552; border-radius: 4px; height:40px;font-size: 16px; font-weight: 600; line-height: 24px; background-color: #024552; color:White;">
+              <div class="d-flex p-2 my-4  align-items-center" style="border:2px solid #024552; border-radius: 4px; height:40px;font-size: 16px; font-weight: 600; line-height: 24px; background-color: #024552; color:White;">
                 Create organization profile <span><svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                     <path d="M9.00016 16.1701L4.83016 12.0001L3.41016 13.4101L9.00016 19.0001L21.0002 7.00009L19.5902 5.59009L9.00016 16.1701Z" fill="white" />
                   </svg>
@@ -98,7 +98,7 @@ $totalMatches = sizeof($userMatches);
 
             <?php } else { ?>
               <a href="organization.php?action=create_organization" style="color: inherit; text-decoration: none;">
-                <div class="d-flex p-2 my-2  align-items-center" style="border:2px solid #024552; border-radius: 4px; height:40px;font-size: 16px; font-weight: 600; line-height: 24px; color:#024552;">
+                <div class="d-flex p-2 my-4  align-items-center" style="border:2px solid #024552; border-radius: 4px; height:40px;font-size: 16px; font-weight: 600; line-height: 24px; color:#024552;">
                   Create organization profile
                 </div>
               </a>
@@ -106,7 +106,7 @@ $totalMatches = sizeof($userMatches);
             <?php
             if ($userOpportunity) {
             ?>
-              <div class="d-flex p-2 my-2  align-items-center" style="border:2px solid #024552;background-color: #024552; border-radius: 4px; height:40px;font-size: 16px; font-weight: 600; line-height: 24px; color:white;">
+              <div class="d-flex p-2 my-4  align-items-center" style="border:2px solid #024552;background-color: #024552; border-radius: 4px; height:40px;font-size: 16px; font-weight: 600; line-height: 24px; color:white;">
                 Create your first Opportunity <span><svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                     <path d="M9.00016 16.1701L4.83016 12.0001L3.41016 13.4101L9.00016 19.0001L21.0002 7.00009L19.5902 5.59009L9.00016 16.1701Z" fill="white" />
                   </svg>
@@ -115,13 +115,13 @@ $totalMatches = sizeof($userMatches);
             <?php } else { ?>
               <a href="opportunity.php?action=create_opportunity" style="color: inherit;text-decoration: none;">
 
-                <div class="d-flex p-2 my-2  align-items-center" style="border:2px solid #024552; border-radius: 4px; height:40px;font-size: 16px; font-weight: 600; line-height: 24px; color:#024552;">
+                <div class="d-flex p-2 my-4  align-items-center" style="border:2px solid #024552; border-radius: 4px; height:40px;font-size: 16px; font-weight: 600; line-height: 24px; color:#024552;">
                   Create your first Opportunity
                 </div>
               </a>
             <?php } ?>
             <?php if ($userSolverDetails) { ?>
-              <div class="d-flex p-2  my-2 align-items-center" style="border:2px solid #024552;background-color:  #024552; border-radius: 4px; height:40px;font-size: 16px; font-weight: 600; line-height: 24px; color:white;">
+              <div class="d-flex p-2  my-4 align-items-center" style="border:2px solid #024552;background-color:  #024552; border-radius: 4px; height:40px;font-size: 16px; font-weight: 600; line-height: 24px; color:white;">
                 Create your Solver profile <span><svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                     <path d="M9.00016 16.1701L4.83016 12.0001L3.41016 13.4101L9.00016 19.0001L21.0002 7.00009L19.5902 5.59009L9.00016 16.1701Z" fill="white" />
                   </svg>
@@ -131,7 +131,7 @@ $totalMatches = sizeof($userMatches);
 
               <a href="solver.php?action=create_solver" style="color: inherit; text-decoration: none;">
 
-                <div class="d-flex p-2  my-2 align-items-center" style="border:2px solid #024552; border-radius: 4px; height:40px;font-size: 16px; font-weight: 600; line-height: 24px; color:#024552;">
+                <div class="d-flex p-2  my-4 align-items-center" style="border:2px solid #024552; border-radius: 4px; height:40px;font-size: 16px; font-weight: 600; line-height: 24px; color:#024552;">
                   Create your Solver profile
                 </div>
               </a>
@@ -143,7 +143,7 @@ $totalMatches = sizeof($userMatches);
             Explore
           </div>
           <div class="card-body">
-            <div class="my-2">
+            <div class="my-4">
               <h6 style="font-size: 16px; font-weight: 700; line-height: 24px;">Find Solvers</h6>
               <p style="font-size: 16px; font-weight: 400; line-height: 24px;">Looking to solve a problem? Search for Solvers using some keywords. We’ll match you with the best resources.</p>
               <a href="findsolver.php" style="color: inherit; text-decoration: none;">
@@ -152,7 +152,7 @@ $totalMatches = sizeof($userMatches);
                 </div>
               </a>
             </div>
-            <div class="my-2">
+            <div class="my-4">
               <h6 style="font-size: 16px; font-weight: 700; line-height: 24px;">Find Opportunities</h6>
 
               <p style="font-size: 16px; font-weight: 400; line-height: 24px;">Have skills and experience you want to share with others? We’ll match you with Seekers who need your expertise.</p>
@@ -175,7 +175,7 @@ $totalMatches = sizeof($userMatches);
       $gridColumns = ["location", "organization"];
 
     ?>
-      <div class="d-flex justify-content-between my-2">
+      <div class="d-flex justify-content-between my-4">
         <div style="font-size: 24px; font-weight: 700;">Active Opportunities (<?php echo count($userOpportunity) ?>) </div>
         <div class="d-flex">
           <a href="opportunityList.php" style="color:inherit;text-decoration: none;">
@@ -305,7 +305,7 @@ $totalMatches = sizeof($userMatches);
         $solverInfo = $solvers->getAllSolverProfileByOrgIdAndUserId($org->public_id,Session::get('userid'),$organizations,$users);
         if(empty($solverInfo)){
         ?>
-        <div class="my-2" style="font-size: 14px; font-weight: 700; line-height: 24px;padding:8px 12px 8px 12px;height:42px;background-color: #E7E7E8;">
+        <div class="my-4" style="font-size: 14px; font-weight: 700; line-height: 24px;padding:8px 12px 8px 12px;height:42px;background-color: #E7E7E8;">
         This organization dose not have Solver profile.
       </div>
 
@@ -313,7 +313,7 @@ $totalMatches = sizeof($userMatches);
         }else{
         foreach($solverInfo as $solver):
         ?>
-        <div class="my-2" style="font-size: 14px; font-weight: 700; line-height: 24px;padding:8px 12px 8px 12px;height:42px;background-color: #E7E7E8;">
+        <div class="my-4" style="font-size: 14px; font-weight: 700; line-height: 24px;padding:8px 12px 8px 12px;height:42px;background-color: #E7E7E8;">
            <?php
                        $useHeadline = $solver->headline;
                        $useHeadline = (strlen($useHeadline) > 33) ? substr($useHeadline,0,30).'...' : $useHeadline;

@@ -237,6 +237,21 @@ if (!$foundSolver && isset($_GET['query'])) {
     </div>
 
 
+    <?php
+    //View opportunity modal
+
+    ?>
+    <div class="modal modal_outer right_modal fade" style="color: black;" id="viewmodal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+        <div class="modal-dialog " role="document">
+            <div class="modal-content modal_content2">
+
+
+            </div>
+
+
+        </div>
+    </div>
+
     <div class="xt-body-organization" style="color: black;">
         <div class="opportunity-search">
             <div class="xt-body-organization" style="color:black">
@@ -349,11 +364,11 @@ if (!$foundSolver && isset($_GET['query'])) {
                                 <div></div>
                             </div>
                             <div class="card-footer d-flex">
-                                <a href="viewOpportunity.php?opportunityid=<?php echo $opportunity['public_id'] ?>">
-                                <div class=" btn" data-id='<?php echo $opportunity['public_id'] ?>' style="width: 130px;height: 40px;background-color: #F5A800;padding: 8px 12px 8px 12px;font-size: 16px; font-weight: 700;border-radius: 4px;">
+                                
+                                <div class="viewOpportunityButton btn" data-id='<?php echo $opportunity['public_id'] ?>' style="width: 130px;height: 40px;background-color: #F5A800;padding: 8px 12px 8px 12px;font-size: 16px; font-weight: 700;border-radius: 4px;">
                                     View Details
                                 </div>
-                                </a>
+                             
                                     <div class="ml-2 match" data-id='<?php echo $opportunity['public_id'] ?>' style="width: 74px;height: 40px;background-color: #E7E7E8;padding: 8px 12px 8px 12px;font-size: 16px; font-weight: 700;border-radius: 4px;">
                                         Match
                                     </div>
@@ -538,7 +553,7 @@ if (!$foundSolver && isset($_GET['query'])) {
                     id: opportunityId
                 },
                 success: function(response) {
-                    $('.modal-content').html(response);
+                    $('.modal_content2').html(response);
                     $('#viewmodal').modal('show');
                 }
             });
@@ -579,6 +594,7 @@ if (!$foundSolver && isset($_GET['query'])) {
         $('#matchWithOpportunity').modal('show');
     })
    })
+  
 </script>
 </body>
 

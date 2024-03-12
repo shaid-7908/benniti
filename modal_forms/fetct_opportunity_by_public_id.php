@@ -51,28 +51,28 @@ if (isset($_GET['id'])) {
         $skillText = substr($skillText, 0, strrpos($skillText, ','));
         $skillIds = substr($skillIds, 0, strrpos($skillIds, ','));
 
-
+        $rate_t = ($opportunity['rate_type'] == 'per_day') ? '/day' : '/hr';
 
         if ($opportunity) {
             // HTML markup for form fields with fetched data
             echo "
               
            <div class='modal-header ' style='display:flex;align-items:center;'>
-                    <h5 class='modal-title' id='exampleModalLongTitle' style='color:#012B33;font-size:24px;font-weight:700;'>{$opportunity['headline']}</h5>
+                    <h5 class='modal-title poppins-font' id='exampleModalLongTitle' style='color:#012B33;font-size:24px;font-weight:700;'>{$opportunity['headline']}</h5>
                     <div type='button' class='close' data-dismiss='modal' style='border:2px solid #E7E7E8; height:40px;width:40px;display:flex;justify-content:center;align-items:center;' aria-label='Close'>
                        <span aria-hidden='true'>&times;</span>
 
                     </div>
                 </div>
                 <div class='modal-body'>
-                <p style='font-size:16px;font-weight:400;'>{$opportunity['requirements']}</p>
+                <p class='inter-font' style='font-size:16px;font-weight:400;'>{$opportunity['requirements']}</p>
                 <div class='d-flex align-items-center justify-content-between'>
                                 <div class='d-flex align-items-center'>
                                     <div><svg width='16' height='17' viewBox='0 0 16 17' fill='none' xmlns='http://www.w3.org/2000/svg'>
                                             <path d='M7.99988 3L7.84338 3.14L2.13988 8.9065L1.79688 9.2505L2.14038 9.6105L6.89038 14.3605L7.25038 14.704L7.59538 14.3605L13.3604 8.657L13.4999 8.5V3H7.99988ZM8.42188 4H12.4999V8.078L7.24988 13.297L3.20288 9.25L8.42188 4ZM10.9999 5C10.8673 5 10.7401 5.05268 10.6463 5.14645C10.5526 5.24021 10.4999 5.36739 10.4999 5.5C10.4999 5.63261 10.5526 5.75978 10.6463 5.85355C10.7401 5.94732 10.8673 6 10.9999 6C11.1325 6 11.2597 5.94732 11.3534 5.85355C11.4472 5.75978 11.4999 5.63261 11.4999 5.5C11.4999 5.36739 11.4472 5.24021 11.3534 5.14645C11.2597 5.05268 11.1325 5 10.9999 5Z' fill='black' fill-opacity='0.87' />
                                         </svg>
                                     </div>
-                                    <div style='font-size:14px;font-weight:600;color:#012B33;' class='ml-2'>{$opportunity['rate']}/hr</div>
+                                    <div style='font-size:14px;font-weight:600;color:#012B33;' class='ml-2'>{$opportunity['rate']}{$rate_t}</div>
                                 </div>
                                 <div class='d-flex align-items-center'>
                                     <div><svg width='16' height='16' viewBox='0 0 16 16' fill='none' xmlns='http://www.w3.org/2000/svg'>
@@ -98,15 +98,44 @@ if (isset($_GET['id'])) {
 
                                 
                 </div>
+                <p class='inter-font font-700 font-16 my-4' style='color:#012B33'>
+                Required Skills
+                </p>
+                <div class='d-flex'style='flex-wrap:wrap;'>";
+               foreach ($getSkillsInfo as $skill){
+                echo "
+                <div style='padding:4px 8px 4px 8px;background-color: #E7E7E8;margin-right:4px;'>
+                $skill->skill_name
+                </div>
+                ";
+               }
+                
+               echo " </div>
 
                     </div>
                         <div class='modal-footer'>
+                             <div class='match-in-modal' data-id='{$opportunityId}' style='width: 130px;height: 40px;background-color: #F5A800;padding: 8px 12px 8px 12px;font-size: 16px; font-weight: 700;border-radius: 4px;'>
+                             Match
+                             </div>
                             <button type='button' class='btn btn-secondary' data-dismiss='modal'>Close</button>
                             
 
                         </div>
                 </div>
-        
+                 <script>
+                  $('.match-in-modal').on('click',function(){
+                     $('#viewmodal').modal('hide');
+                     var opportunityPublic_id = $(this).data('id')
+                     var inputField = $('<input>');
+      inputField.attr('name', 'opportunityPublic_id'); // Set name attribute
+      inputField.attr('type', 'hidden');
+      inputField.attr('id', 'opportunityPublic_id'); // Set type attribute
+      inputField.val(opportunityPublic_id);
+
+        $('#opportunity-id-input').append(inputField);
+        $('#matchWithOpportunity').modal('show');
+                  })
+                 </script>
 
         
             ";

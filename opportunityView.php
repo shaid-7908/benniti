@@ -69,13 +69,14 @@ if (isset($_GET['opportunityid'])) {
             echo $skillText;
             ?>
           </div>
-          <div class="form-group">
+          <div class="form-group" style="display: flex; justify-content: space-between;">
             <?php
             $orgid = getIfSet($getOInfo, "public_id");
             if ($organizations->checkOrganizationAdmin($orgAdmin, Session::get("userid"), $users) || Session::get("roleid") == '1') {
               echo "<span class='btn btn-success'><a href='opportunity.php?opportunityid=" . getIfSet($getOInfo, "public_id") . "'>Edit</a></span>";
             }
             ?>
+            <div class="btn btn-danger" onclick="handleBack()">Close</div>
           </div>
         </div>
       </div>
@@ -83,7 +84,11 @@ if (isset($_GET['opportunityid'])) {
   </div>
 
 </div>
-
+<script>
+  function handleBack(){
+    window.history.back();
+  }
+</script>
 <?php
 include 'inc/footer.php';
 ?>

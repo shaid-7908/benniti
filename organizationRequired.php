@@ -6,7 +6,19 @@
   Session::checkSession();
   $views->showAndClearPendingMessage();
 ?>
-  <div class="card ">
+<div class="xt-card-organization">
+  <div class="xt-sidebar-organization">
+   <?php include 'inc/sidebar.php' ?>
+  <div style="border-top: 2px solid #053B45;padding: 8px;">
+            <a href="https://www.bennit.ai/" target="_blank">
+                <span style="text-decoration: underline; color:#F5A800;font-size: 14px;">
+                    Bennit.Ai
+                </span>
+            </a>
+        </div>
+  </div>
+  <div class="xt-body-organization">
+    <div class="card " style="color: black;">
     <div class="card-header">
       <h3><i class="fas fa-building mr-2"></i>Organization Required</h3>
     </div>
@@ -25,7 +37,10 @@
       </table>
     </div>
   </div>
-<?php
-  include 'inc/footer.php';
-?>
+  </div>
+
+</div>
+
+  
+
 </html>

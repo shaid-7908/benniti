@@ -157,8 +157,8 @@ class Organizations {
      elseif ($this->checkOrganizationExists($data['orgname']) == TRUE) {
       return createUserMessage("error", "An organization with that name already exists. You can ask the administrator to add you to that organization, or create a new one.");
     } else {
-      $sql = "INSERT INTO tbl_organizations(public_id, creator, orgname, orgtype, description, website,address1 ,address2 , city , state , zip) 
-      VALUES(:publicid, :creator, :orgname, :orgtype, :description,:website,:address1,:address2,:city,:state,:zip)";
+      $sql = "INSERT INTO tbl_organizations(public_id, creator, orgname, orgtype, description, website,address1 ,address2 , city , state , zip,social_media) 
+      VALUES(:publicid, :creator, :orgname, :orgtype, :description,:website,:address1,:address2,:city,:state,:zip,:social_media)";
       $stmt = $this->db->pdo->prepare($sql);
       $stmt->bindValue(':publicid', $newPublicId);
       $stmt->bindValue(':creator', $userId);
@@ -167,6 +167,7 @@ class Organizations {
       $stmt->bindValue(':description', $data['description']);
       $stmt->bindValue(':website', $data['website']);
       $stmt->bindValue(':address1', $data['address_1']);
+      $stmt->bindValue(':social_media',$data['social_media']);
       if($data['address_2'] == " "){
          $stmt->bindValue(':address2', 'NA');
       }else{

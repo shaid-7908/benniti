@@ -50,7 +50,7 @@ if (isset($_GET['action']) && $_GET['action'] == "create_solver") {
 } elseif ($_SERVER["REQUEST_METHOD"] == 'POST' && isset($_POST['createSolver'])) {
   $getSolverInfo = $_POST;
   $createSolver = $solvers->createSolver($_POST, TRUE, $users, $organizations);
- // print_r($_POST);
+  //print_r($_POST);
   //Show pending results
   if (isset($createSolver)) {
     echo $createSolver;
@@ -135,38 +135,35 @@ if (isset($_GET['action']) && $_GET['action'] == "create_solver") {
           <div class="form-group">
             <label class="inter-font" for="industry" style="display: block;font-size: 16px; font-weight: 700;">Industry</label>
             <p class="inter-font" style="font-size: 12px; font-weight: 400;color: gray;">Select the industries that apply to your organization</p>
-            <select class="form-control" id="industry" name="industry" disabled>
-              <option value="option1">Option 1</option>
-              <option value="option2">Option 2</option>
-              <option value="option3">Option 3</option>
-              <!-- Add more options as needed -->
-            </select>
+            <input type="text" id="industries" name="industries" class="form-control" onkeydown="addIndustry(event)" style="background-color: white;border: 1px solid #ced4da;" />
+            <input type="hidden" id="industry_hidden" name="industry_hidden" />
+            <div id="industries-list" class="my-2" style="display: flex; flex-wrap: wrap;">
+
+            </div>
           </div>
           <div class="form-group">
             <label class="inter-font" for="industry" style="display: block;font-size: 16px; font-weight: 700;">Technology</label>
             <p class="inter-font" style="font-size: 12px; font-weight: 400;color: gray;">Select the technology areas in which your organization has expertise</p>
-            <select class="form-control" id="technology" name="technology" disabled>
-              <option value="option1">Option 1</option>
-              <option value="option2">Option 2</option>
-              <option value="option3">Option 3</option>
-              <!-- Add more options as needed -->
-            </select>
+            <input type="text" id="technologies" name="technologies" class="form-control" onkeydown="addTechnology(event)" style="background-color: white;border: 1px solid #ced4da;" />
+            <input type="hidden" id="technology_hidden" name="technology_hidden" />
+            <div id="technologies-list" class="my-2" style="display: flex; flex-wrap: wrap;">
+
+            </div>
           </div>
           <div class="form-group">
             <label class="inter-font" for="industry" style="display: block;font-size: 16px; font-weight: 700;">Speciality</label>
             <p class="inter-font" style="font-size: 12px; font-weight: 400;color: gray;">Select the specialties that your organization has experience with</p>
-            <select class="form-control" id="speciality" name="speciality" disabled>
-              <option value="option1">Option 1</option>
-              <option value="option2">Option 2</option>
-              <option value="option3">Option 3</option>
-              <!-- Add more options as needed -->
-            </select>
+            <input type="text" id="specialties" name="specialties" class="form-control" onkeydown="addSpecialty(event)" style="background-color: white;border: 1px solid #ced4da;" />
+            <input type="hidden" id="specialty_hidden" name="specialty_hidden" />
+            <div id="specialties-list" class="my-2" style="display: flex; flex-wrap: wrap;">
+
+            </div>
           </div>
           <div class="form-group">
             <label class="inter-font" for="experience" style="font-size: 16px; font-weight: 700;">Experience and expertise</label>
             <p class="inter-font" style="font-size: 12px; font-weight: 400;color: gray; line-height: 14px;">Provide details about your organization’s experience and areas of expertise</p>
 
-            <textarea  name="experience" id="experience" style="width:100%; height:300px" class="form-control"><?php echo getIfSet($getSolverInfo, "experience"); ?></textarea>
+            <textarea name="experience" id="experience" style="width:100%; height:300px" class="form-control"><?php echo getIfSet($getSolverInfo, "experience"); ?></textarea>
           </div>
           <div class="form-group">
             <label class="inter-font" for="certificates" style="font-size: 16px; font-weight: 700;">Certificates</label>
@@ -227,7 +224,7 @@ if (isset($_GET['action']) && $_GET['action'] == "create_solver") {
             </div>
           </div>
 
-          <input  type="button" name="previous" class="previous-form btn btn-info" value="Previous" style="background-color: #E7E7E8; border: none; width:130px;color:black;font-weight: 700;" />
+          <input type="button" name="previous" class="previous-form btn btn-info" value="Previous" style="background-color: #E7E7E8; border: none; width:130px;color:black;font-weight: 700;" />
           <input type="button" class="next-form btn btn-info" style="background-color: #F5A800; border: none; width:130px;color:black;font-weight: 700;" value="Next" />
 
 
@@ -236,7 +233,7 @@ if (isset($_GET['action']) && $_GET['action'] == "create_solver") {
 
         <fieldset>
           <div class="form-group">
-            <label for="location" style="font-size: 24px; font-weight: 700;">Available locations</label>
+            <label for="location" class="poppins-font" style="font-size: 48px; font-weight: 700;margin-top:20px">Available locations</label>
             <p class="inter-font" style="font-size: 16px; font-weight: 400;">Do you offer your services on-prem, remote, or a hybrid of the two?</p>
             <div class="form-check">
               <input class="form-check-input" type="checkbox" name="location[]" value="On premise" id="onPremise">
@@ -394,6 +391,7 @@ if (isset($_GET['action']) && $_GET['action'] == "create_solver") {
     rowsContainer.appendChild(newRow);
   });
 </script>
+
 <script>
   // functions to add skill as div
   function addSkill(event) {
@@ -468,6 +466,9 @@ if (isset($_GET['action']) && $_GET['action'] == "create_solver") {
   }
 </script>
 
+<?php
+//Add certificate handled here
+?>
 <script>
   let certificatesArray = [];
 
@@ -489,9 +490,11 @@ if (isset($_GET['action']) && $_GET['action'] == "create_solver") {
     certificatesArray.push(certificateText);
     const certificateLists = document.getElementById('certificates-list')
     const certiDiv = document.createElement('div');
+    certiDiv.style.marginRight = '4px';
     certiDiv.addEventListener('click', function() {
       removeFromCertificatesArray(certificateText);
       certiDiv.remove()
+      updateCertificatesInput();
 
     })
     const nDiv = document.createElement('div')
@@ -538,6 +541,206 @@ if (isset($_GET['action']) && $_GET['action'] == "create_solver") {
     }
   }
 </script>
+
+<?php
+//Add industry handled here
+?>
+<script>
+  let industriesArray = [];
+
+  function addIndustry(event) {
+    if (event.key === 'Enter') {
+      event.preventDefault();
+      const industryText = document.getElementById('industries').value.trim();
+      if (industryText !== "") {
+        addIndustryToList(industryText);
+        document.getElementById('industries').value = "";
+        updateIndustriesInput();
+      }
+    }
+  }
+
+  function addIndustryToList(industryText) {
+    industriesArray.push(industryText);
+    const industriesList = document.getElementById('industries-list');
+    const industryDiv = document.createElement('div');
+    industryDiv.style.marginRight = '4px';
+    industryDiv.addEventListener('click', function() {
+      removeFromIndustriesArray(industryText);
+      industryDiv.remove();
+      updateIndustriesInput();
+    });
+    const nDiv = document.createElement('div');
+    nDiv.textContent = industryText;
+    nDiv.style.marginRight = '4px';
+
+    industryDiv.appendChild(nDiv);
+    industryDiv.style.display = 'flex';
+    industryDiv.style.backgroundColor = '#f0f0f0';
+    industryDiv.style.padding = '4px 8px 4px 8px';
+    industryDiv.style.alignItems = 'center';
+    industryDiv.style.fontWeight = '400';
+    industryDiv.style.borderRadius = '4px';
+
+    const svg = document.createElementNS('http://www.w3.org/2000/svg', 'svg');
+    svg.setAttribute('width', '16');
+    svg.setAttribute('height', '16');
+    svg.setAttribute('viewBox', '0 0 16 16');
+    const path = document.createElementNS('http://www.w3.org/2000/svg', 'path');
+    path.setAttribute('d', 'M6.9987 12.8335C4.0587 12.8335 1.66536 10.4402 1.66536 7.50016C1.66536 4.56016 4.0587 2.16683 6.9987 2.16683C9.9387 2.16683 12.332 4.56016 12.332 7.50016C12.332 10.4402 9.9387 12.8335 6.9987 12.8335ZM6.9987 0.833496C3.31203 0.833496 0.332031 3.8135 0.332031 7.50016C0.332031 11.1868 3.31203 14.1668 6.9987 14.1668C10.6854 14.1668 13.6654 11.1868 13.6654 7.50016C13.6654 3.8135 10.6854 0.833496 6.9987 0.833496ZM8.72536 4.8335L6.9987 6.56016L5.27203 4.8335L4.33203 5.7735L6.0587 7.50016L4.33203 9.22683L5.27203 10.1668L6.9987 8.44016L8.72536 10.1668L9.66536 9.22683L7.9387 7.50016L9.66536 5.7735L8.72536 4.8335Z');
+    path.setAttribute('fill', 'black');
+    path.setAttribute('fill-opacity', '0.87');
+    svg.appendChild(path);
+    industryDiv.appendChild(svg);
+    industriesList.appendChild(industryDiv);
+  }
+
+  function updateIndustriesInput() {
+    const industriesInput = document.getElementById('industry_hidden');
+    industriesInput.value = industriesArray.join(',');
+  }
+
+  function removeFromIndustriesArray(industryText) {
+    const index = industriesArray.indexOf(industryText);
+    if (index !== -1) {
+      industriesArray.splice(index, 1);
+    }
+  }
+</script>
+
+<?php
+//Add technology handled here
+?>
+<script>
+  let technologiesArray = [];
+
+  function addTechnology(event) {
+    if (event.key === 'Enter') {
+      event.preventDefault();
+      const technologyText = document.getElementById('technologies').value.trim();
+      if (technologyText !== "") {
+        addTechnologyToList(technologyText);
+        document.getElementById('technologies').value = "";
+        updateTechnologiesInput();
+      }
+    }
+  }
+
+  function addTechnologyToList(technologyText) {
+    technologiesArray.push(technologyText);
+    const technologiesList = document.getElementById('technologies-list');
+    const technologyDiv = document.createElement('div');
+    technologyDiv.style.marginRight = '4px';
+    technologyDiv.addEventListener('click', function() {
+      removeFromTechnologiesArray(technologyText);
+      technologyDiv.remove();
+      updateTechnologiesInput();
+    });
+    const nDiv = document.createElement('div');
+    nDiv.textContent = technologyText;
+    nDiv.style.marginRight = '4px';
+
+    technologyDiv.appendChild(nDiv);
+    technologyDiv.style.display = 'flex';
+    technologyDiv.style.backgroundColor = '#f0f0f0';
+    technologyDiv.style.padding = '4px 8px 4px 8px';
+    technologyDiv.style.alignItems = 'center';
+    technologyDiv.style.fontWeight = '400';
+    technologyDiv.style.borderRadius = '4px';
+
+    const svg = document.createElementNS('http://www.w3.org/2000/svg', 'svg');
+    svg.setAttribute('width', '16');
+    svg.setAttribute('height', '16');
+    svg.setAttribute('viewBox', '0 0 16 16');
+    const path = document.createElementNS('http://www.w3.org/2000/svg', 'path');
+    path.setAttribute('d', 'M6.9987 12.8335C4.0587 12.8335 1.66536 10.4402 1.66536 7.50016C1.66536 4.56016 4.0587 2.16683 6.9987 2.16683C9.9387 2.16683 12.332 4.56016 12.332 7.50016C12.332 10.4402 9.9387 12.8335 6.9987 12.8335ZM6.9987 0.833496C3.31203 0.833496 0.332031 3.8135 0.332031 7.50016C0.332031 11.1868 3.31203 14.1668 6.9987 14.1668C10.6854 14.1668 13.6654 11.1868 13.6654 7.50016C13.6654 3.8135 10.6854 0.833496 6.9987 0.833496ZM8.72536 4.8335L6.9987 6.56016L5.27203 4.8335L4.33203 5.7735L6.0587 7.50016L4.33203 9.22683L5.27203 10.1668L6.9987 8.44016L8.72536 10.1668L9.66536 9.22683L7.9387 7.50016L9.66536 5.7735L8.72536 4.8335Z');
+    path.setAttribute('fill', 'black');
+    path.setAttribute('fill-opacity', '0.87');
+    svg.appendChild(path);
+    technologyDiv.appendChild(svg);
+    technologiesList.appendChild(technologyDiv);
+  }
+
+  function updateTechnologiesInput() {
+    const technologiesInput = document.getElementById('technology_hidden');
+    technologiesInput.value = technologiesArray.join(',');
+  }
+
+  function removeFromTechnologiesArray(technologyText) {
+    const index = technologiesArray.indexOf(technologyText);
+    if (index !== -1) {
+      technologiesArray.splice(index, 1);
+    }
+  }
+</script>
+
+<?php
+//Add Speciality handelled here
+?>
+
+<script>
+  let specialtiesArray = [];
+
+  function addSpecialty(event) {
+    if (event.key === 'Enter') {
+      event.preventDefault();
+      const specialtyText = document.getElementById('specialties').value.trim();
+      if (specialtyText !== "") {
+        addSpecialtyToList(specialtyText);
+        document.getElementById('specialties').value = "";
+        updateSpecialtiesInput();
+      }
+    }
+  }
+
+  function addSpecialtyToList(specialtyText) {
+    specialtiesArray.push(specialtyText);
+    const specialtiesList = document.getElementById('specialties-list');
+    const specialtyDiv = document.createElement('div');
+    specialtyDiv.style.marginRight = '4px;'
+    specialtyDiv.addEventListener('click', function() {
+      removeFromSpecialtiesArray(specialtyText);
+      specialtyDiv.remove();
+      updateSpecialtiesInput();
+    });
+    const nDiv = document.createElement('div');
+    nDiv.textContent = specialtyText;
+    nDiv.style.marginRight = '4px';
+
+    specialtyDiv.appendChild(nDiv);
+    specialtyDiv.style.display = 'flex';
+    specialtyDiv.style.backgroundColor = '#f0f0f0';
+    specialtyDiv.style.padding = '4px 8px 4px 8px';
+    specialtyDiv.style.alignItems = 'center';
+    specialtyDiv.style.fontWeight = '400';
+    specialtyDiv.style.borderRadius = '4px';
+
+    const svg = document.createElementNS('http://www.w3.org/2000/svg', 'svg');
+    svg.setAttribute('width', '16');
+    svg.setAttribute('height', '16');
+    svg.setAttribute('viewBox', '0 0 16 16');
+    const path = document.createElementNS('http://www.w3.org/2000/svg', 'path');
+    path.setAttribute('d', 'M6.9987 12.8335C4.0587 12.8335 1.66536 10.4402 1.66536 7.50016C1.66536 4.56016 4.0587 2.16683 6.9987 2.16683C9.9387 2.16683 12.332 4.56016 12.332 7.50016C12.332 10.4402 9.9387 12.8335 6.9987 12.8335ZM6.9987 0.833496C3.31203 0.833496 0.332031 3.8135 0.332031 7.50016C0.332031 11.1868 3.31203 14.1668 6.9987 14.1668C10.6854 14.1668 13.6654 11.1868 13.6654 7.50016C13.6654 3.8135 10.6854 0.833496 6.9987 0.833496ZM8.72536 4.8335L6.9987 6.56016L5.27203 4.8335L4.33203 5.7735L6.0587 7.50016L4.33203 9.22683L5.27203 10.1668L6.9987 8.44016L8.72536 10.1668L9.66536 9.22683L7.9387 7.50016L9.66536 5.7735L8.72536 4.8335Z');
+    path.setAttribute('fill', 'black');
+    path.setAttribute('fill-opacity', '0.87');
+    svg.appendChild(path);
+    specialtyDiv.appendChild(svg);
+    specialtiesList.appendChild(specialtyDiv);
+  }
+
+  function updateSpecialtiesInput() {
+    const specialtiesInput = document.getElementById('specialty_hidden');
+    specialtiesInput.value = specialtiesArray.join(',');
+  }
+
+  function removeFromSpecialtiesArray(specialtyText) {
+    const index = specialtiesArray.indexOf(specialtyText);
+    if (index !== -1) {
+      specialtiesArray.splice(index, 1);
+    }
+  }
+</script>
+
 <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
 <script src="https://cdn.jsdelivr.net/npm/popper.js@1.12.9/dist/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>

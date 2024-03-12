@@ -121,7 +121,7 @@ switch ($onboardStep) {
                     <tr>
                         <td></td>
                         <td align="center" class="onboard-choice-icon">
-                            <a href="organization.php?action=create_organization" style="text-decoration: none; color:inherit;">
+                            <a href="organization.php?action=create_organization&dummy_step=seeker" style="text-decoration: none; color:inherit;">
                                 <div style="width:400px;height: 50px; background-color: #F5A800; border-radius: 4px; padding:8px 12px 8px 12px;text-align: center;color:black;font-weight: 700; font-size:20px;">
                                     <i class="fas fa-building mr-2"></i>
                                     Create Organization
@@ -164,7 +164,7 @@ switch ($onboardStep) {
                             <td></td>
                             <div style="border: 3px solid #F5A800; display: flex; justify-content: center; height: 290px; align-items: center; width: 380px;">
                                 <td align="center" style="padding-left: 20%" class="onboard-choice-icon">
-                                    <a href="organization.php?action=create_organization" style="text-decoration: none; text-align: center;">
+                                    <a href="organization.php?action=create_organization&dummy_step=solver" style="text-decoration: none; text-align: center;">
                                         <i class="fas fa-building mr-2" style="font-size: 70px; color: #F5A800;"></i>
                                         <h3 style="
                                 font-size: 24px;

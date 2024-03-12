@@ -22,6 +22,7 @@ if (isset($_GET["query"])) {
   $theQuery = $_GET["query"];
 }
 
+
 $all_opportunity = $opportunities->getAllOpportunityDataForUser(Session::get('userid'), $users);
 
 if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['opportunityCheckbox'])) {
