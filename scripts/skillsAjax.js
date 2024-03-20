@@ -9,6 +9,9 @@ function controlledFormSubmit(frm) {
 //     .getElementById("skillsText")
 //     .value.replace(/,+$/, "");
   //First find or create each skill to get id
+  var skilltextInput = document
+    .getElementById("skillsText")
+    .value
   var skillDivs = document
     .getElementById("skills-list")
     .getElementsByClassName("skill");
@@ -18,6 +21,14 @@ function controlledFormSubmit(frm) {
     var skillName = skillDivs[i].innerText.trim();
     skills.push(skillName);
   }
+ var skillNamesFromInput = skilltextInput.split(",");
+ for (var i = 0; i < skillNamesFromInput.length; i++) {
+   var skillName = skillNamesFromInput[i].trim();
+   if (skillName !== "") {
+     // Exclude empty strings
+     skills.push(skillName);
+   }
+ }
   document.getElementById("skillsText").value = skills.join(",");
   var searchStr = document.getElementById("skillsText").value;
   searchStr = searchStr.split(",");

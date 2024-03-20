@@ -45,8 +45,8 @@ if (!$allowed && isset($orgid)) {
 if (isset($_GET['action']) && $_GET['action'] == "create_opportunity" && checkUserAuth("create_opportunity", Session::get('roleid'))) {
   if ($_SERVER["REQUEST_METHOD"] == 'POST' && isset($_POST['addOpty'])) {
     $getOInfo = $_POST;
-
-    $addOpty = $opportunities->createOpportunity($_POST, TRUE, $organizations, $users);
+     
+   $addOpty = $opportunities->createOpportunity($_POST, TRUE, $organizations, $users);
     
     //Show pending results
     if (isset($addOpty)) {
