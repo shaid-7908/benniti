@@ -57,6 +57,22 @@ if (isset($_GET['id'])) {
       // HTML markup for form fields with fetched data
       echo "
               
+<script>
+    ClassicEditor
+        .create( document.querySelector( '#requirements' ),{
+          toolbar: [ 'heading', '|', 'bold', 'italic', 'link', 'bulletedList', 'numberedList', 'blockQuote' ],
+        heading: {
+            options: [
+                { model: 'paragraph', title: 'Paragraph', class: 'ck-heading_paragraph' },
+                { model: 'heading1', view: 'h1', title: 'Heading 1', class: 'ck-heading_heading1' },
+                { model: 'heading2', view: 'h2', title: 'Heading 2', class: 'ck-heading_heading2' }
+            ]
+        }
+        })
+        .catch( error => {
+            console.error( error );
+        });
+</script>
           <h3 class='mt-4' style='font-size: 48px; font-weight: 700;'>Opportunity description</h3>
           <p style='font-weight: 400; font-size: 16px;'>Define the problem you need solved, or the opportunity to improve.</p>
           <input type='hidden' id='optyid' name='optyid' value='{$opportunity['id']}'>
@@ -77,7 +93,7 @@ if (isset($_GET['id'])) {
           <div class='form-group'>
             <label style='font-weight: 700; font-size: 16px;' for='requirements'>Requirements </label>
             <p style='font-size: 12px; font-weight: 400;'>A detailed description of the opportunity</p>
-            <textarea name='requirements' id='requirements' style='width:100%; height:174px' class='form-control'>{$opportunity['requirements']}</textarea>
+            <textarea name='requirements' id='requirements' style='width:100%; height:174px' class='form-control'>".htmlspecialchars($opportunity['requirements'])."</textarea>
           </div>
          
           

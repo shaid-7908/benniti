@@ -5,31 +5,31 @@
   include 'inc/topbar.php';
   Session::checkLogin();
   $isHuman = false;
-  // if ($_SERVER["REQUEST_METHOD"] == 'POST' && isset($_POST['register'])) {
-  //   if (RECAPTCHA_KEY != "") {
-  //     $captcha = $_POST['g-recaptcha-response'];
-  //     $secretKey = "Put your secret key here";
-  //     $ip = $_SERVER['REMOTE_ADDR'];
-  //     $url = 'https://www.google.com/recaptcha/api/siteverify?secret=' . urlencode(RECAPTCHA_KEY) .  '&response=' . urlencode($captcha);
-  //     $response = file_get_contents($url);
-  //     $responseKeys = json_decode($response,true);
-  //     if($responseKeys["success"]) {
-  //       $isHuman = true;
-  //     }
-  //   } else {
-  //     $isHuman = true;
-  //   }
-  //   if ($isHuman) {
-  //     $register = $users->createUser($_POST, FALSE);
-  //     if (isset($register)) {
-  //       echo $register;
-  //     }
-  //   } else {
-  //     echo createUserMessage("error", "Captcha failed. Please prove you are human by solving the captcha. If you have Javascript disabled, you'll need to enable it.");
-  //   }    
-  // }
+  if ($_SERVER["REQUEST_METHOD"] == 'POST' && isset($_POST['register'])) {
+    if (RECAPTCHA_KEY != "") {
+      $captcha = $_POST['g-recaptcha-response'];
+      $secretKey = "Put your secret key here";
+      $ip = $_SERVER['REMOTE_ADDR'];
+      $url = 'https://www.google.com/recaptcha/api/siteverify?secret=' . urlencode(RECAPTCHA_KEY) .  '&response=' . urlencode($captcha);
+      $response = file_get_contents($url);
+      $responseKeys = json_decode($response,true);
+      if($responseKeys["success"]) {
+        $isHuman = true;
+      }
+    } else {
+      $isHuman = true;
+    }
+    if ($isHuman) {
+      $register = $users->createUser($_POST, FALSE);
+      if (isset($register)) {
+        echo $register;
+      }
+    } else {
+      echo createUserMessage("error", "Captcha failed. Please prove you are human by solving the captcha. If you have Javascript disabled, you'll need to enable it.");
+    }    
+  }
 ?>
-<!-- <script src="https://www.google.com/recaptcha/api.js" async defer></script>
+<script src="https://www.google.com/recaptcha/api.js" async defer></script>
 <script>
 function checkFormValidAndSubmit() {
   <?php
@@ -52,8 +52,8 @@ function checkFormValidAndSubmit() {
     }
     return true;
 }
-</script> -->
-<!-- <div >
+</script>
+<div >
   <div class="card-header">
     <h3 class='text-center'>User Registration</h3>
   </div>
@@ -103,7 +103,7 @@ function checkFormValidAndSubmit() {
       </form>
     </div>
   </div>
-</div> -->
+</div>
 <?php
   include 'inc/footer.php';
 ?>

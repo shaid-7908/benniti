@@ -50,7 +50,7 @@ if (isset($_GET['action']) && $_GET['action'] == "create_solver") {
 } elseif ($_SERVER["REQUEST_METHOD"] == 'POST' && isset($_POST['createSolver'])) {
   $getSolverInfo = $_POST;
   $createSolver = $solvers->createSolver($_POST, TRUE, $users, $organizations);
-  //print_r($_POST);
+  print_r($_POST);
   //Show pending results
   if (isset($createSolver)) {
     echo $createSolver;
@@ -746,6 +746,24 @@ if (isset($_GET['action']) && $_GET['action'] == "create_solver") {
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
 
 <script type="text/javascript" src="scripts/form.js"></script>
+
+<script src="https://cdn.ckeditor.com/ckeditor5/36.0.1/classic/ckeditor.js"></script>
+<script>
+    ClassicEditor
+        .create( document.querySelector( '#experience' ),{
+          toolbar: [ 'heading', '|', 'bold', 'italic', 'link', 'bulletedList', 'numberedList', 'blockQuote' ],
+        heading: {
+            options: [
+                { model: 'paragraph', title: 'Paragraph', class: 'ck-heading_paragraph' },
+                { model: 'heading1', view: 'h1', title: 'Heading 1', class: 'ck-heading_heading1' },
+                { model: 'heading2', view: 'h2', title: 'Heading 2', class: 'ck-heading_heading2' }
+            ]
+        }
+        })
+        .catch( error => {
+            console.error( error );
+        });
+</script>
 </body>
 
 </html>

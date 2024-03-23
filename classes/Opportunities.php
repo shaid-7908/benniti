@@ -92,7 +92,7 @@ class Opportunities {
     $snowflake = new \Godruoyi\Snowflake\Snowflake;
     $newPublicId = $snowflake->id();
 
-    if ($data['headline'] == "" || $data['fk_org_id'] == "" || $data['requirements'] == "" || $data['date'] == "" || $data['rate'] == "" || $data['location'] == "") {
+    if ($data['headline'] == "" || $data['fk_org_id'] == "" || $data['requirements'] == "" || $data['date'] == "" || $data['rate'] == "" || $data['location'] == "" || $data['skillsText'] == "") {
       return createUserMessage("error", "All fields are required!");
     } elseif (containsBadWords($data['headline'])) {
       return createUserMessage("error", "Opportunity should not contain foul language.");

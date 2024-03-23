@@ -81,9 +81,12 @@ class Views {
                         $html.="- <a href='solverView.php?solverid=" . $thisSolver->public_id . "'>" . $useHeadline . "</a><br>";
                     }    
                 }
-                if (count($orgSolvers) == 0 && in_array("createsolver", $actions)) {
+                if($orgSolvers){
+                 if (count($orgSolvers) == 0 && in_array("createsolver", $actions)) {
                     $html.='<a href="solver.php?action=create_solver&orgid=' . getIfSet($org, "public_id") . '">Create Solver Profile</a>';
                 }
+                }
+                
                 $html.='    </td>' . PHP_EOL;
             }
             //Actions column

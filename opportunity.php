@@ -45,7 +45,7 @@ if (!$allowed && isset($orgid)) {
 if (isset($_GET['action']) && $_GET['action'] == "create_opportunity" && checkUserAuth("create_opportunity", Session::get('roleid'))) {
   if ($_SERVER["REQUEST_METHOD"] == 'POST' && isset($_POST['addOpty'])) {
     $getOInfo = $_POST;
-     
+    
    $addOpty = $opportunities->createOpportunity($_POST, TRUE, $organizations, $users);
     
     //Show pending results
@@ -360,7 +360,7 @@ else {
               }
               $skillText = substr($skillText, 0, strrpos($skillText, ','));
               $skillIds = substr($skillIds, 0, strrpos($skillIds, ','));
-              print_r($skillText);
+              
             }
             if (isset($_POST['skillsText'])) {
               $skillText = $_POST['skillsText'];
@@ -526,6 +526,23 @@ else {
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
 
 <script type="text/javascript" src="scripts/form.js"></script>
+
+<script>
+    ClassicEditor
+        .create( document.querySelector( '#requirements' ),{
+          toolbar: [ 'heading', '|', 'bold', 'italic', 'link', 'bulletedList', 'numberedList', 'blockQuote' ],
+        heading: {
+            options: [
+                { model: 'paragraph', title: 'Paragraph', class: 'ck-heading_paragraph' },
+                { model: 'heading1', view: 'h1', title: 'Heading 1', class: 'ck-heading_heading1' },
+                { model: 'heading2', view: 'h2', title: 'Heading 2', class: 'ck-heading_heading2' }
+            ]
+        }
+        })
+        .catch( error => {
+            console.error( error );
+        });
+</script>
 </body>
 
 <!-- <?php

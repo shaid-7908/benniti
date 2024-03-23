@@ -300,7 +300,6 @@ $totalMatches = sizeof($userMatches);
       ?>
       <div class="card p-2">
         <h1 class="inter-font font-20 font-700">Organization <?php echo $org->orgname ?></h1>
-        <p><?php echo $org->public_id ?></p>
         <div class="inter-font font-16 font-700">Solver profiles under this organization</div>
         <?php
         $solverInfo = $solvers->getAllSolverProfileByOrgIdAndUserId($org->public_id,Session::get('userid'),$organizations,$users);

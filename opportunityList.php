@@ -83,7 +83,9 @@ if ($_SERVER["REQUEST_METHOD"] == 'POST' && isset($_POST['updateOpty'])) {
 }
 ?>
 <!-- The Modal -->
+
 <script src="scripts/skillsAjax.js"></script>
+
 <form name="frmOpportunityEdit" id="frmOpportunityEdit" class="" action="" method="POST">
   <div class="modal modal_outer right_modal fade" style="color: black;" id="editmodal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
     <div class="modal-dialog " role="document">
@@ -127,6 +129,7 @@ if ($_SERVER["REQUEST_METHOD"] == 'POST' && isset($_POST['updateOpty'])) {
 
     </div>
 </form>
+
 <div class="xt-card-organization" style="color:black;position: relative;">
 
   <?php

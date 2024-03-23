@@ -83,7 +83,7 @@ class Solvers {
     $snowflake = new \Godruoyi\Snowflake\Snowflake;
     $newPublicId = $snowflake->id();
 
-    if ( $data['fk_org_id'] == "" || $data['experience'] == "" || $data['availability'] == "" || $data['location'] == "" || $data['headline'] == "") {
+    if ( $data['fk_org_id'] == "" || $data['experience'] == "" || $data['availability'] == "" || $data['location'] == "" || $data['headline'] == "" || $data['skillsText'] == "") {
       return createUserMessage("error", "All fields are required!");
     }  elseif(strlen($data['experience']) < 50) {
       return createUserMessage("error", "Please provide a detailed description (at least 50 characters) of your experience.");

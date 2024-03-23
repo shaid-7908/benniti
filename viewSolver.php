@@ -151,7 +151,7 @@ if (isset($_GET['public_solver_id'])) {
           </svg>
 
         </div>
-        <div class="inter-font font-600 font-14 ml-2">Back to serach results</div>
+        <div class="inter-font font-600 font-14 ml-2">Back to search results</div>
       </div>
       <div style="border-radius: 4px;box-shadow: 0px 0px 18px 0px rgba(0, 0, 0, 0.1); overflow: hidden;">
         <div class="solver-div" style="background-image: url('https://www.pwc.com/gx/en/hero/hero-2020/im-hero-2020.jpg'); background-size: cover; background-position: center; height: 200px;">
@@ -194,7 +194,7 @@ if (isset($_GET['public_solver_id'])) {
             </div>
 
             <div class="my-4 pt-4 pb-4" style="border-top: 1px solid #E7E7E8; border-bottom: 1px solid #E7E7E8;">
-              <p class="inter-font font-700 font-16">Locations</p>
+              <p class="inter-font font-700 font-16">Location</p>
               <div style="display: flex; align-items: center;">
                 <div>
                   <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">

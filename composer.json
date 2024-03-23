@@ -2,5 +2,5 @@
     "require": {
         "stripe/stripe-php": "^13.2",
         "godruoyi/php-snowflake": "^3.0"
-    }
+        }
 }
